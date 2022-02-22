@@ -1,0 +1,24 @@
+name: servo
+version: 1.0.0
+
+
+authors:
+  - abstraq <abstraq@outlook.com>
+
+dependencies:
+  redis:
+    github: jgaskins/redis
+    version: ~> 0.3.1
+  msgpack:
+    github: crystal-community/msgpack-crystal
+    version: ~> 1.2.0
+  athena-event_dispatcher:
+    github: athena-framework/event-dispatcher
+    version: ~> 0.1.0
+targets:
+  servo:
+    main: src/servo.cr
+
+crystal: 1.3.2
+
+license: MIT
