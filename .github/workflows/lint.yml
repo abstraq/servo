@@ -1,0 +1,22 @@
+name: Linter
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+
+      - name: Install dependencies
+        run: shards update
+
+      - name: Check formatting
+        run: crystal tool format --check
+
+      - name: Run ameba linter
+        run: ./bin/ameba
