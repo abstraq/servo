@@ -4,6 +4,10 @@
 # https://opensource.org/licenses/MIT.
 
 require "log"
+require "athena-event_dispatcher"
+
+require "./broker/*"
+require "./event/*"
 
 module Servo
   Log = ::Log.for(self)
