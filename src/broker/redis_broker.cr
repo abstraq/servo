@@ -7,6 +7,7 @@ require "redis"
 require "redis/streaming"
 require "athena-event_dispatcher"
 
+require "../event/*"
 require "./broker_interface"
 
 # Implementation of `Servo::Broker::BrokerInterface` for [Redis](https://redis.io/).
@@ -164,6 +165,9 @@ struct Servo::Broker::RedisBroker
     @dispatcher.dispatch Servo::Event::GatewayMessageEvent.new(event_name, payload)
     case event_name
     # Add a match for each event name here.
+    when "CHANNEL_CREATE" then @dispatcher.dispatch Servo::Event::ChannelCreateEvent.new(event_name, payload)
+    when "CHANNEL_UPDATE" then @dispatcher.dispatch Servo::Event::ChannelUpdateEvent.new(event_name, payload)
+    when "CHANNEL_DELETE" then @dispatcher.dispatch Servo::Event::ChannelDeleteEvent.new(event_name, payload)
     end
     # Acknowledges reciept of the message.
     @redis.xack(event_name, @group, message.id)
