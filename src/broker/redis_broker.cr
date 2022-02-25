@@ -143,7 +143,7 @@ struct Servo::Broker::RedisBroker
   def listen_for_pending(count : UInt32 = 10, start : String = "0-0", timeout : Time::Span = 10.seconds)
     Servo::Log.info { "Started listening for pending messages. Will recieve #{count} elements per stream and idle for 10 seconds." }
     loop do
-      @subscribed_events.each do |event_name|
+      @auto_claimed_events.each do |event_name|
         response = Redis::Streaming::XAutoClaimResponse.new(@redis.xautoclaim(event_name, @group, @consumer_name, min_idle_time: timeout, start: start, count: count))
         Servo::Log.debug { "Recieved pending message on stream #{event_name}." }
         response.messages.each do |message|
