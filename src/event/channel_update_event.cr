@@ -12,7 +12,7 @@ class Servo::Event::ChannelUpdateEvent < AED::Event
   # The name of the gateway event.
   getter event_name : String
 
-  # The data sent in the event.
+  # The channel that was updated.
   getter channel : Servo::Model::Channel
 
   def initialize(@event_name : String, payload : String)

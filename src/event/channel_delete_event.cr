@@ -12,7 +12,7 @@ class Servo::Event::ChannelDeleteEvent < AED::Event
   # The name of the gateway event.
   getter event_name : String
 
-  # The data sent in the event.
+  # The channel that was deleted.
   getter channel : Servo::Model::Channel
 
   def initialize(@event_name : String, payload : String)

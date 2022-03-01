@@ -7,7 +7,7 @@ require "json"
 
 require "../util/snowflake_util"
 require "./snowflake"
-require "./converters"
+require "./converters/snowflake_converter"
 
 # Represents a object that contains an id.
 module Servo::Model::Identifiable

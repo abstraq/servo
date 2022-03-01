@@ -8,6 +8,7 @@ require "athena-event_dispatcher"
 
 require "./broker/*"
 require "./event/*"
+require "./model/**"
 
 module Servo
   Log = ::Log.for(self)

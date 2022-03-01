@@ -7,42 +7,54 @@ require "json"
 
 require "./identifiable"
 
-# Represents a User on Discord.
-# See https://discord.com/developers/docs/resources/user#user-object-user-structure.
+# Represents a [User](https://discord.com/developers/docs/resources/user#user-object-user-structure).
 struct Servo::Model::User
   include Servo::Model::Identifiable
   include JSON::Serializable
 
+  # The user's username, not unique across the platform.
   getter username : String
 
+  # The user's 4-digit discord-tag.
   getter discriminator : String
 
+  # The user's [avatar hash](https://discord.com/developers/docs/reference#image-formatting).
   getter avatar : String?
 
+  # Whether the user belongs to an OAuth2 application.
   getter bot : Bool?
 
+  # Whether the user is an Official Discord System user (part of the urgent message system)
   getter system : Bool?
 
+  # Whether the user has two factor enabled on their account.
   getter mfa_enabled : Bool?
 
+  # The user's [banner hash](https://discord.com/developers/docs/reference#image-formatting).
   getter banner : String?
 
+  # The user's banner color encoded as an integer representation of a hexadecimal color code.
   getter accent_color : UInt32?
 
+  # The user's chosen [language option](https://discord.com/developers/docs/reference#locales).
   getter locale : String?
 
+  # Whether the email on the account has been verified.
   getter verified : Bool?
 
+  # The user's email.
   getter email : String?
 
+  # The flags on a user's account.
   getter flags : UserFlags?
 
+  # The type of Nitro Subscription on a user's account.
   getter premium_type : PremiumType?
 
+  # The public flags on a user's account.
   getter public_flags : UserFlags?
 
-  # The flags on a user's account.
-  # See https://discord.com/developers/docs/resources/user#user-object-user-flags.
+  # The [flags](https://discord.com/developers/docs/resources/user#user-object-user-flags) on a user's account.
   @[Flags]
   enum UserFlags : UInt32
     # Discord Employee
@@ -97,6 +109,7 @@ struct Servo::Model::User
   end
 
   # The type of nitro subscription on a user's account.
+  #
   # See https://discord.com/developers/docs/resources/user#user-object-premium-types.
   enum PremiumType : UInt8
     None         = 0

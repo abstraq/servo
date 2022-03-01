@@ -6,19 +6,26 @@
 require "json"
 
 require "../snowflake"
-require "../converters"
 require "../permissions"
+require "../converters/snowflake_converter"
 
+# Represents a [Overwrite](https://discord.com/developers/docs/resources/channel#overwrite-object).
+#
+# Overwrites override role or user permissions on a channel level.
 struct Servo::Model::PermissionOverwrite
   include JSON::Serializable
 
+  # Role or user id.
   @[JSON::Field(converter: Servo::Model::SnowflakeConverter)]
   getter id : Servo::Model::Snowflake
 
+  # The type of overwrite.
   getter type : OverwriteType
 
+  # Permission bit set to allow.
   getter allow : Servo::Model::Permissions
 
+  # Permission bit set to deny.
   getter deny : Servo::Model::Permissions
 
   enum OverwriteType : UInt8
